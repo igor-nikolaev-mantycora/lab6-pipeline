@@ -46,8 +46,13 @@ resource "aws_instance" "jenkins" {
   # Execute a script on a remote resource
   provisioner "remote-exec" {
     inline = [
-      "sudo yum update -y && sudo amazon-linux-extras install ansible2 -y",
-      "sleep 60s",
+      "sudo amazon-linux-extras install ansible2 java-openjdk11 -y --nogpgcheck", 
+ #     "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key",
+ #     "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
+ #     "sudo yum install jenkins-2.387.2-1.1.noarch -y --nogpgcheck",
+ #     "sudo systemctl daemon-reload",
+ #     "sudo systemctl enable jenkins",
+ #     "sudo systemctl start jenkins",
       "ansible-playbook install_jenkins_and_docker.yaml"
     ]
  }

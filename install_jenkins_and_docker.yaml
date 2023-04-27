@@ -12,12 +12,12 @@
         state: present
       vars:
         package:
-        - wget
-        - java-1.8.0-openjdk
-        - jenkins
         - git
         - yum-utils
-        - ansible
+
+    - name: install java 11
+      shell: "amazon-linux-extras install java-openjdk11"
+      become: yes
 
     - name: Download Jenkins Repo
       get_url:
